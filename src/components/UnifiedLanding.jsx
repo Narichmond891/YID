@@ -414,6 +414,31 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
             </div>
           </section>
 
+          {/* Banner Image */}
+          <section style={{
+            padding: '40px 0',
+            background: '#FFFFFF'
+          }}>
+            <div style={{
+              width: '95%',
+              maxWidth: '1200px',
+              margin: '0 auto',
+              paddingLeft: '60px',
+              paddingRight: '40px'
+            }}>
+              <img
+                src={import.meta.env.BASE_URL + 'banner-image.png'}
+                alt="Youth in the Diaspora Banner"
+                style={{
+                  width: '100%',
+                  height: 'auto',
+                  borderRadius: '12px',
+                  boxShadow: '0 4px 20px rgba(10, 31, 68, 0.15)'
+                }}
+              />
+            </div>
+          </section>
+
           {/* Historical Image Scroll */}
           <HistoricalImageScroll />
 
