@@ -426,16 +426,85 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
               paddingLeft: '60px',
               paddingRight: '40px'
             }}>
+              {/* Image */}
               <img
                 src={import.meta.env.BASE_URL + 'banner-image.png'}
-                alt="Youth in the Diaspora Banner"
+                alt="Watchmen Over Jerusalem Isaiah LXII"
                 style={{
                   width: '100%',
                   height: 'auto',
-                  borderRadius: '12px',
-                  boxShadow: '0 4px 20px rgba(10, 31, 68, 0.15)'
+                  borderRadius: '12px 12px 0 0',
+                  boxShadow: '0 4px 20px rgba(10, 31, 68, 0.15)',
+                  display: 'block'
                 }}
               />
+
+              {/* Attribution Box */}
+              <div style={{
+                background: '#FAFBFC',
+                borderRadius: '0 0 12px 12px',
+                padding: '16px 24px',
+                borderTop: '1px solid #E2E8F0',
+                boxShadow: '0 2px 8px rgba(10, 31, 68, 0.08)'
+              }}>
+                <div style={{
+                  display: 'flex',
+                  justifyContent: 'space-between',
+                  alignItems: 'center',
+                  flexWrap: 'wrap',
+                  gap: '12px'
+                }}>
+                  {/* Left: Title and Location */}
+                  <div>
+                    <h3 style={{
+                      margin: '0 0 4px 0',
+                      fontSize: '15px',
+                      fontWeight: '500',
+                      fontFamily: "'Playfair Display', serif",
+                      color: '#5a6a7a',
+                      lineHeight: '1.3'
+                    }}>
+                      Watchmen Over Jerusalem Isaiah LXII
+                    </h3>
+                    <p style={{
+                      margin: '0',
+                      fontSize: '12px',
+                      fontWeight: '400',
+                      fontFamily: "'Montserrat', sans-serif",
+                      color: '#8a99a8'
+                    }}>
+                      Made in Boston, USA
+                    </p>
+                  </div>
+
+                  {/* Right: Artist Name */}
+                  <div style={{
+                    textAlign: 'right'
+                  }}>
+                    <div style={{
+                      fontFamily: "'Brush Script MT', 'Lucida Handwriting', cursive",
+                      fontSize: '20px',
+                      fontWeight: '400',
+                      color: '#5a6a7a',
+                      marginBottom: '2px',
+                      lineHeight: '1'
+                    }}>
+                      Zayda
+                    </div>
+                    <div style={{
+                      fontFamily: "'Montserrat', sans-serif",
+                      fontSize: '11px',
+                      fontWeight: '400',
+                      color: '#8a99a8',
+                      lineHeight: '1.4'
+                    }}>
+                      Solomon S Richmond
+                      <br />
+                      (digital adaptation)
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
