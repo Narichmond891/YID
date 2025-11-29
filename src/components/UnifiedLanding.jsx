@@ -1000,6 +1000,20 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
             </h2>
 
             <p style={{
+              margin: '0 0 24px 0',
+              fontSize: isMobile ? '13px' : '15px',
+              lineHeight: '1.6',
+              color: '#718096',
+              fontFamily: "'Montserrat', sans-serif",
+              fontStyle: 'italic'
+            }}>
+              Send submissions to{' '}
+              <a href="mailto:connect.youthinthediaspora@gmail.com" style={{ color: '#0A1F44', textDecoration: 'underline' }}>
+                connect.youthinthediaspora@gmail.com
+              </a>
+            </p>
+
+            <p style={{
               margin: '0 0 40px 0',
               fontSize: isMobile ? '15px' : '18px',
               lineHeight: '1.8',
