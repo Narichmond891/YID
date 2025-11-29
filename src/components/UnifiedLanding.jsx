@@ -17,6 +17,26 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [focusedPainting, setFocusedPainting] = useState(null);
   const [selectedExhibition, setSelectedExhibition] = useState(null);
+  const [selectedCentury, setSelectedCentury] = useState('all');
+
+  // Exhibition data with century property
+  const exhibitions = [
+    {
+      id: 'zayda',
+      title: "Zayda Solomon's Art",
+      century: '20th',
+      description: "Journey through the artwork of Solomon S Richmond (1906-2006), who explored Jewish identity, diaspora, and cultural heritage through painting. From Ukraine to America, his story embodies the resilience of the Jewish diaspora.",
+      imageUrl: 'historical/Zayda.png',
+      artworkCount: '16+',
+      years: '1929-2006'
+    }
+    // Future exhibitions can be added here with their century property
+  ];
+
+  // Filter exhibitions by century
+  const filteredExhibitions = selectedCentury === 'all'
+    ? exhibitions
+    : exhibitions.filter(exhibit => exhibit.century === selectedCentury);
 
   // Handle hash changes for exhibit link
   useEffect(() => {
@@ -983,10 +1003,11 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
               <a href="mailto:connect.youthinthediaspora@gmail.com" style={{ color: '#0A1F44', textDecoration: 'underline' }}>
                 connect.youthinthediaspora@gmail.com
               </a>
+              {' '}(please include time period: 19th, 20th, or 21st century)
             </p>
 
             <p style={{
-              margin: '0 0 40px 0',
+              margin: '0 0 32px 0',
               fontSize: isMobile ? '15px' : '18px',
               lineHeight: '1.8',
               color: '#4a5568',
@@ -995,127 +1016,183 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
               Explore curated exhibitions showcasing Jewish diaspora art, culture, and heritage
             </p>
 
+            {/* Century Filter Dropdown */}
+            <div style={{
+              marginBottom: '32px',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '16px',
+              flexWrap: 'wrap'
+            }}>
+              <label style={{
+                fontSize: isMobile ? '14px' : '16px',
+                fontWeight: '600',
+                color: '#0A1F44',
+                fontFamily: "'Montserrat', sans-serif"
+              }}>
+                Filter by Time Period:
+              </label>
+              <select
+                value={selectedCentury}
+                onChange={(e) => setSelectedCentury(e.target.value)}
+                style={{
+                  padding: '10px 16px',
+                  fontSize: isMobile ? '14px' : '15px',
+                  fontFamily: "'Montserrat', sans-serif",
+                  color: '#0A1F44',
+                  background: '#FFFFFF',
+                  border: '2px solid #E2E8F0',
+                  borderRadius: '8px',
+                  cursor: 'pointer',
+                  transition: 'all 0.2s ease',
+                  outline: 'none',
+                  minWidth: isMobile ? '150px' : '180px'
+                }}
+                onFocus={(e) => e.target.style.borderColor = '#0A1F44'}
+                onBlur={(e) => e.target.style.borderColor = '#E2E8F0'}
+              >
+                <option value="all">All Centuries</option>
+                <option value="19th">19th Century (1800-1899)</option>
+                <option value="20th">20th Century (1900-1999)</option>
+                <option value="21st">21st Century (2000-present)</option>
+              </select>
+            </div>
+
             {/* Exhibition Cards Grid */}
             <div style={{
               display: 'grid',
               gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(350px, 1fr))',
               gap: isMobile ? '24px' : '32px'
             }}>
-              {/* Zayda Solomon Exhibition Card */}
-              <div
-                onClick={() => {
-                  setSelectedExhibition('zayda');
-                  setActivePage('exhibit');
-                }}
-                style={{
-                  background: '#FFFFFF',
-                  borderRadius: '12px',
-                  border: '1px solid #E2E8F0',
-                  overflow: 'hidden',
-                  cursor: 'pointer',
-                  transition: 'all 0.3s ease',
-                  boxShadow: '0 2px 8px rgba(10, 31, 68, 0.08)'
-                }}
-                onMouseOver={(e) => {
-                  e.currentTarget.style.transform = 'translateY(-8px)';
-                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(10, 31, 68, 0.15)';
-                  e.currentTarget.style.borderColor = '#0A1F44';
-                }}
-                onMouseOut={(e) => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(10, 31, 68, 0.08)';
-                  e.currentTarget.style.borderColor = '#E2E8F0';
-                }}
-              >
-                {/* Exhibition Preview Image */}
-                <div style={{
-                  width: '100%',
-                  height: isMobile ? '200px' : '250px',
-                  overflow: 'hidden',
-                  position: 'relative'
-                }}>
-                  <img
-                    src={`${import.meta.env.BASE_URL}historical/Zayda.png`}
-                    alt="Zayda Solomon Exhibition"
-                    style={{
-                      width: '100%',
-                      height: '100%',
-                      objectFit: 'cover',
-                      display: 'block'
-                    }}
-                  />
-                </div>
-
-                {/* Exhibition Info */}
-                <div style={{
-                  padding: isMobile ? '20px' : '24px'
-                }}>
-                  <h3 style={{
-                    margin: '0 0 12px 0',
-                    fontSize: isMobile ? '20px' : '24px',
-                    fontWeight: '700',
-                    fontFamily: "'Playfair Display', serif",
-                    color: '#0A1F44',
-                    lineHeight: '1.3'
-                  }}>
-                    Zayda Solomon's Art
-                  </h3>
-
-                  <p style={{
-                    margin: '0 0 16px 0',
-                    fontSize: isMobile ? '14px' : '16px',
-                    lineHeight: '1.7',
-                    color: '#4a5568',
-                    fontFamily: "'Montserrat', sans-serif"
-                  }}>
-                    Journey through the artwork of Solomon S Richmond (1906-2006), who explored Jewish identity, diaspora, and cultural heritage through painting. From Ukraine to America, his story embodies the resilience of the Jewish diaspora.
-                  </p>
-
+              {/* Render filtered exhibitions */}
+              {filteredExhibitions.map((exhibit) => (
+                <div
+                  key={exhibit.id}
+                  onClick={() => {
+                    setSelectedExhibition(exhibit.id);
+                    setActivePage('exhibit');
+                  }}
+                  style={{
+                    background: '#FFFFFF',
+                    borderRadius: '12px',
+                    border: '1px solid #E2E8F0',
+                    overflow: 'hidden',
+                    cursor: 'pointer',
+                    transition: 'all 0.3s ease',
+                    boxShadow: '0 2px 8px rgba(10, 31, 68, 0.08)'
+                  }}
+                  onMouseOver={(e) => {
+                    e.currentTarget.style.transform = 'translateY(-8px)';
+                    e.currentTarget.style.boxShadow = '0 12px 30px rgba(10, 31, 68, 0.15)';
+                    e.currentTarget.style.borderColor = '#0A1F44';
+                  }}
+                  onMouseOut={(e) => {
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 2px 8px rgba(10, 31, 68, 0.08)';
+                    e.currentTarget.style.borderColor = '#E2E8F0';
+                  }}
+                >
+                  {/* Exhibition Preview Image */}
                   <div style={{
-                    display: 'flex',
-                    gap: '12px',
-                    flexWrap: 'wrap',
-                    marginBottom: '16px'
+                    width: '100%',
+                    height: isMobile ? '200px' : '250px',
+                    overflow: 'hidden',
+                    position: 'relative'
                   }}>
-                    <span style={{
-                      padding: '6px 12px',
-                      background: '#F7FAFC',
-                      color: '#0A1F44',
-                      borderRadius: '6px',
-                      fontSize: isMobile ? '11px' : '12px',
-                      fontWeight: '600',
-                      fontFamily: "'Montserrat', sans-serif"
-                    }}>
-                      16+ Artworks
-                    </span>
-                    <span style={{
-                      padding: '6px 12px',
-                      background: '#F7FAFC',
-                      color: '#0A1F44',
-                      borderRadius: '6px',
-                      fontSize: isMobile ? '11px' : '12px',
-                      fontWeight: '600',
-                      fontFamily: "'Montserrat', sans-serif"
-                    }}>
-                      1929-2006
-                    </span>
+                    <img
+                      src={`${import.meta.env.BASE_URL}${exhibit.imageUrl}`}
+                      alt={`${exhibit.title} Exhibition`}
+                      style={{
+                        width: '100%',
+                        height: '100%',
+                        objectFit: 'cover',
+                        display: 'block'
+                      }}
+                    />
                   </div>
 
+                  {/* Exhibition Info */}
                   <div style={{
-                    padding: '12px 0 0 0',
-                    borderTop: '1px solid #E2E8F0',
-                    fontSize: isMobile ? '13px' : '14px',
-                    fontWeight: '600',
-                    color: '#0A1F44',
-                    fontFamily: "'Montserrat', sans-serif",
-                    display: 'flex',
-                    alignItems: 'center',
-                    gap: '8px'
+                    padding: isMobile ? '20px' : '24px'
                   }}>
-                    View Exhibition →
+                    <h3 style={{
+                      margin: '0 0 12px 0',
+                      fontSize: isMobile ? '20px' : '24px',
+                      fontWeight: '700',
+                      fontFamily: "'Playfair Display', serif",
+                      color: '#0A1F44',
+                      lineHeight: '1.3'
+                    }}>
+                      {exhibit.title}
+                    </h3>
+
+                    <p style={{
+                      margin: '0 0 16px 0',
+                      fontSize: isMobile ? '14px' : '16px',
+                      lineHeight: '1.7',
+                      color: '#4a5568',
+                      fontFamily: "'Montserrat', sans-serif"
+                    }}>
+                      {exhibit.description}
+                    </p>
+
+                    <div style={{
+                      display: 'flex',
+                      gap: '12px',
+                      flexWrap: 'wrap',
+                      marginBottom: '16px'
+                    }}>
+                      <span style={{
+                        padding: '6px 12px',
+                        background: '#F7FAFC',
+                        color: '#0A1F44',
+                        borderRadius: '6px',
+                        fontSize: isMobile ? '11px' : '12px',
+                        fontWeight: '600',
+                        fontFamily: "'Montserrat', sans-serif"
+                      }}>
+                        {exhibit.artworkCount} Artworks
+                      </span>
+                      <span style={{
+                        padding: '6px 12px',
+                        background: '#F7FAFC',
+                        color: '#0A1F44',
+                        borderRadius: '6px',
+                        fontSize: isMobile ? '11px' : '12px',
+                        fontWeight: '600',
+                        fontFamily: "'Montserrat', sans-serif"
+                      }}>
+                        {exhibit.years}
+                      </span>
+                      <span style={{
+                        padding: '6px 12px',
+                        background: '#EDF2F7',
+                        color: '#0A1F44',
+                        borderRadius: '6px',
+                        fontSize: isMobile ? '11px' : '12px',
+                        fontWeight: '600',
+                        fontFamily: "'Montserrat', sans-serif"
+                      }}>
+                        {exhibit.century === '19th' ? '19th Century' : exhibit.century === '20th' ? '20th Century' : '21st Century'}
+                      </span>
+                    </div>
+
+                    <div style={{
+                      padding: '12px 0 0 0',
+                      borderTop: '1px solid #E2E8F0',
+                      fontSize: isMobile ? '13px' : '14px',
+                      fontWeight: '600',
+                      color: '#0A1F44',
+                      fontFamily: "'Montserrat', sans-serif",
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '8px'
+                    }}>
+                      View Exhibition →
+                    </div>
                   </div>
                 </div>
-              </div>
+              ))}
 
               {/* Placeholder for future exhibitions */}
               <div
