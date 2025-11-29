@@ -37,11 +37,11 @@ function UnifiedLanding({ onEnterMap }) {
     return () => window.removeEventListener('resize', handleResize);
   }, []);
 
-  const fullText = `The destruction of Gaza and the persistent conflation of Judaism with the state of Israel have caused division with Jewish communities. While some Jews have grown more unified in their support for Israel, others have agonized over the brutality inflicted upon Palestinians.
+  const fullText = `The persistent conflation of Judaism with the state of Israel has caused division with Jewish communities. While some Jews have grown more unified in their support for Israel, others have agonized over the brutality inflicted upon Palestinians.
 
 Many Jews have begun to grapple with a fundamental question in one form or another: Must Jewish identity be centered around a political state and political power?
 
-Youth in the Diaspora (YID) offers an alternative to the narrative that political empowerment is requisite for Jewish religious and cultural survival. It presents an interactive and evolving repository of Jewish life in the diaspora throughout millennia of Jewish history and highlights the contributions of Jews to their societies, their communities, and to Judaism itself.
+Youth in the Diaspora (YID) offers an alternative to the narrative that political empowerment is requisite for Jewish religious and cultural survival.. It presents an interactive and evolving repository of Jewish life in the diaspora throughout millennia of Jewish history and highlights the contributions of Jews to their societies, their communities, and to Judaism itself.
 
 YID aims to connect young Jews who seek to celebrate their identity and history with others who share similar ethical principles.`;
 
@@ -778,13 +778,13 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
               fontFamily: "'Montserrat', sans-serif"
             }}>
               <p style={{ margin: '0 0 20px 0' }}>
-                The destruction of Gaza and the persistent conflation of Judaism with the state of Israel have caused division with Jewish communities. While some Jews have grown more unified in their support for Israel, others have agonized over the brutality inflicted upon Palestinians.
+                The persistent conflation of Judaism with the state of Israel has caused division with Jewish communities. While some Jews have grown more unified in their support for Israel, others have agonized over the brutality inflicted upon Palestinians.
               </p>
               <p style={{ margin: '0 0 20px 0' }}>
                 Many Jews have begun to grapple with a fundamental question in one form or another: <strong style={{ color: '#0A1F44' }}>Must Jewish identity be centered around a political state and political power?</strong>
               </p>
               <p style={{ margin: '0 0 20px 0' }}>
-                Youth in the Diaspora (YID) offers an alternative to the narrative that political empowerment is requisite for Jewish religious and cultural survival. It presents an interactive and evolving repository of Jewish life in the diaspora throughout millennia of Jewish history and highlights the contributions of Jews to their societies, their communities, and to Judaism itself.
+                Youth in the Diaspora (YID) offers an alternative to the narrative that political empowerment is requisite for Jewish religious and cultural survival.. It presents an interactive and evolving repository of Jewish life in the diaspora throughout millennia of Jewish history and highlights the contributions of Jews to their societies, their communities, and to Judaism itself.
               </p>
               <p style={{ margin: '0 0 40px 0' }}>
                 YID aims to connect young Jews who seek to celebrate their identity and history with others who share similar ethical principles.
