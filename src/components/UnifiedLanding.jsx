@@ -196,12 +196,12 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
               Contact{isMobile ? '' : ' Us'}
             </button>
             <button
-              onClick={() => setActivePage('sources')}
+              onClick={onEnterMap}
               style={{
                 fontSize: isMobile ? '13px' : '16px',
                 fontWeight: '500',
                 fontFamily: "'Montserrat', sans-serif",
-                color: activePage === 'sources' ? '#0A1F44' : '#4a5568',
+                color: '#4a5568',
                 textDecoration: 'none',
                 transition: 'color 0.2s ease',
                 background: 'none',
@@ -212,9 +212,9 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
                 minHeight: isMobile ? '44px' : 'auto'
               }}
               onMouseOver={(e) => e.target.style.color = '#0A1F44'}
-              onMouseOut={(e) => e.target.style.color = activePage === 'sources' ? '#0A1F44' : '#4a5568'}
+              onMouseOut={(e) => e.target.style.color = '#4a5568'}
             >
-              Sources
+              Map
             </button>
             <button
               onClick={() => setActivePage('exhibitions')}
@@ -747,6 +747,52 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
             </div>
           </section>
 
+          {/* Sources Section */}
+          <section style={{
+            padding: isMobile ? '60px 0' : '80px 0',
+            background: '#FFFFFF',
+            borderTop: '1px solid #E2E8F0'
+          }}>
+            <div style={{
+              width: '95%',
+              maxWidth: '1200px',
+              margin: '0 auto',
+              paddingLeft: isMobile ? '20px' : '60px',
+              paddingRight: isMobile ? '20px' : '40px'
+            }}>
+              <h2 style={{
+                margin: '0 0 32px 0',
+                fontSize: isMobile ? '28px' : '32px',
+                fontWeight: '700',
+                fontFamily: "'Playfair Display', serif",
+                color: '#0A1F44',
+                lineHeight: '1.3'
+              }}>
+                Sources
+              </h2>
+
+              <div style={{
+                fontSize: isMobile ? '15px' : '16px',
+                lineHeight: '1.8',
+                color: '#4a5568',
+                fontFamily: "'Montserrat', sans-serif"
+              }}>
+                <p style={{ margin: '0 0 16px 0' }}>
+                  <strong style={{ color: '#0A1F44' }}>Population Data:</strong> American Jewish Year Book, Jewish Virtual Library, local Jewish community organizations
+                </p>
+                <p style={{ margin: '0 0 16px 0' }}>
+                  <strong style={{ color: '#0A1F44' }}>Historical Events:</strong> United States Holocaust Memorial Museum, Yad Vashem, historical archives
+                </p>
+                <p style={{ margin: '0 0 16px 0' }}>
+                  <strong style={{ color: '#0A1F44' }}>Migration Data:</strong> HIAS, Jewish refugee organization records, immigration archives
+                </p>
+                <p style={{ margin: '0' }}>
+                  <strong style={{ color: '#0A1F44' }}>Cultural Information:</strong> Community contributions, historical societies, academic research
+                </p>
+              </div>
+            </div>
+          </section>
+
         </div>
       )}
 
@@ -869,80 +915,6 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
               </p>
               <p style={{ margin: '0' }}>
                 <strong style={{ color: '#0A1F44' }}>Contribute:</strong> Use the "Add Pin" feature on the map to share your community's story
-              </p>
-            </div>
-
-            <button
-              onClick={onEnterMap}
-              style={{
-                padding: '18px 40px',
-                fontSize: '17px',
-                fontWeight: '700',
-                fontFamily: "'Montserrat', sans-serif",
-                background: 'linear-gradient(135deg, #0A1F44 0%, #1E3A5F 100%)',
-                color: '#FFFFFF',
-                border: 'none',
-                borderRadius: '8px',
-                cursor: 'pointer',
-                transition: 'all 0.3s ease',
-                boxShadow: '0 4px 15px rgba(10, 31, 68, 0.3)',
-                textTransform: 'uppercase',
-                letterSpacing: '0.5px'
-              }}
-              onMouseOver={(e) => {
-                e.target.style.transform = 'translateY(-2px)';
-                e.target.style.boxShadow = '0 6px 20px rgba(10, 31, 68, 0.4)';
-              }}
-              onMouseOut={(e) => {
-                e.target.style.transform = 'translateY(0)';
-                e.target.style.boxShadow = '0 4px 15px rgba(10, 31, 68, 0.3)';
-              }}
-            >
-              Explore the Map
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Sources Page */}
-      {typingComplete && activePage === 'sources' && (
-        <div style={{ minHeight: '80vh', padding: '80px 0', background: '#FFFFFF' }}>
-          <div style={{
-            width: '95%',
-            maxWidth: '1200px',
-            margin: '0 auto',
-            paddingLeft: '60px',
-            paddingRight: '40px'
-          }}>
-            <h2 style={{
-              margin: '0 0 40px 0',
-              fontSize: '36px',
-              fontWeight: '700',
-              fontFamily: "'Playfair Display', serif",
-              color: '#0A1F44',
-              lineHeight: '1.3'
-            }}>
-              Sources
-            </h2>
-
-            <div style={{
-              fontSize: '18px',
-              lineHeight: '1.8',
-              color: '#4a5568',
-              fontFamily: "'Montserrat', sans-serif",
-              marginBottom: '40px'
-            }}>
-              <p style={{ margin: '0 0 20px 0' }}>
-                <strong style={{ color: '#0A1F44' }}>Population Data:</strong> American Jewish Year Book, Jewish Virtual Library, local Jewish community organizations
-              </p>
-              <p style={{ margin: '0 0 20px 0' }}>
-                <strong style={{ color: '#0A1F44' }}>Historical Events:</strong> United States Holocaust Memorial Museum, Yad Vashem, historical archives
-              </p>
-              <p style={{ margin: '0 0 20px 0' }}>
-                <strong style={{ color: '#0A1F44' }}>Migration Data:</strong> HIAS, Jewish refugee organization records, immigration archives
-              </p>
-              <p style={{ margin: '0' }}>
-                <strong style={{ color: '#0A1F44' }}>Cultural Information:</strong> Community contributions, historical societies, academic research
               </p>
             </div>
 
