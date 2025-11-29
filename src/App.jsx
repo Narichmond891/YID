@@ -222,6 +222,45 @@ function App() {
 
       {!showLanding && (
         <div style={{ position: 'relative', height: '100vh', width: '100vw' }}>
+          {/* Home button - Top Left, below zoom controls */}
+          <button
+            onClick={() => {
+              // Clear hash and go back to home
+              if (window.location.hash) {
+                window.history.replaceState(null, null, window.location.pathname);
+              }
+              setShowLanding(true);
+              setHighlightedCities([]);
+              setActiveMigrations([]);
+              setShowMigrations(false);
+            }}
+            style={{
+              position: 'absolute',
+              top: '100px',
+              left: '10px',
+              zIndex: 1000,
+              padding: '10px 20px',
+              background: 'rgba(255, 255, 255, 0.95)',
+              color: '#0A1F44',
+              border: '1px solid rgba(10, 31, 68, 0.2)',
+              borderRadius: '8px',
+              fontSize: '14px',
+              fontWeight: '600',
+              cursor: 'pointer',
+              boxShadow: '0 2px 8px rgba(10, 31, 68, 0.15)',
+              transition: 'all 0.2s ease',
+              fontFamily: "'Montserrat', sans-serif",
+              backdropFilter: 'blur(10px)',
+              display: 'flex',
+              alignItems: 'center',
+              gap: '6px'
+            }}
+            onMouseOver={(e) => e.target.style.background = '#F7FAFC'}
+            onMouseOut={(e) => e.target.style.background = 'rgba(255, 255, 255, 0.95)'}
+          >
+            ← Home
+          </button>
+
           {/* Thematic Selector */}
           <div style={{
             position: 'absolute',

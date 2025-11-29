@@ -5,18 +5,26 @@ function UnifiedLanding({ onEnterMap }) {
   const [displayedText, setDisplayedText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [typingComplete, setTypingComplete] = useState(false);
-  const [activePage, setActivePage] = useState('home'); // 'home', 'why-us', 'contact', 'sources', 'exhibit'
+  const [activePage, setActivePage] = useState('home'); // 'home', 'why-us', 'contact', 'sources', 'exhibitions', 'exhibit'
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [focusedPainting, setFocusedPainting] = useState(null);
+  const [selectedExhibition, setSelectedExhibition] = useState(null);
 
   // Handle hash changes for exhibit link
   useEffect(() => {
+    // Clear hash on initial load to always start at home
+    if (window.location.hash) {
+      window.history.replaceState(null, null, window.location.pathname);
+    }
+
     const handleHash = () => {
       if (window.location.hash === '#exhibit') {
         setActivePage('exhibit');
+      } else {
+        setActivePage('home');
       }
     };
-    handleHash();
+
     window.addEventListener('hashchange', handleHash);
     return () => window.removeEventListener('hashchange', handleHash);
   }, []);
@@ -207,6 +215,27 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
               onMouseOut={(e) => e.target.style.color = activePage === 'sources' ? '#0A1F44' : '#4a5568'}
             >
               Sources
+            </button>
+            <button
+              onClick={() => setActivePage('exhibitions')}
+              style={{
+                fontSize: isMobile ? '13px' : '16px',
+                fontWeight: '500',
+                fontFamily: "'Montserrat', sans-serif",
+                color: activePage === 'exhibitions' ? '#0A1F44' : '#4a5568',
+                textDecoration: 'none',
+                transition: 'color 0.2s ease',
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                padding: isMobile ? '8px 4px' : '0',
+                minWidth: isMobile ? '44px' : 'auto',
+                minHeight: isMobile ? '44px' : 'auto'
+              }}
+              onMouseOver={(e) => e.target.style.color = '#0A1F44'}
+              onMouseOut={(e) => e.target.style.color = activePage === 'exhibitions' ? '#0A1F44' : '#4a5568'}
+            >
+              Exhibitions
             </button>
           </div>
         </div>
@@ -945,6 +974,195 @@ YID aims to connect young Jews who seek to celebrate their identity and history 
             >
               Explore the Map
             </button>
+          </div>
+        </div>
+      )}
+
+      {/* Exhibitions Listing Page */}
+      {typingComplete && activePage === 'exhibitions' && (
+        <div style={{ minHeight: '80vh', padding: isMobile ? '40px 0' : '80px 0', background: '#FFFFFF' }}>
+          <div style={{
+            width: '95%',
+            maxWidth: '1200px',
+            margin: '0 auto',
+            paddingLeft: isMobile ? '20px' : '60px',
+            paddingRight: isMobile ? '20px' : '40px'
+          }}>
+            <h2 style={{
+              margin: '0 0 16px 0',
+              fontSize: isMobile ? '28px' : '36px',
+              fontWeight: '700',
+              fontFamily: "'Playfair Display', serif",
+              color: '#0A1F44',
+              lineHeight: '1.3'
+            }}>
+              Exhibitions
+            </h2>
+
+            <p style={{
+              margin: '0 0 40px 0',
+              fontSize: isMobile ? '15px' : '18px',
+              lineHeight: '1.8',
+              color: '#4a5568',
+              fontFamily: "'Montserrat', sans-serif"
+            }}>
+              Explore curated exhibitions showcasing Jewish diaspora art, culture, and heritage
+            </p>
+
+            {/* Exhibition Cards Grid */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: isMobile ? '1fr' : 'repeat(auto-fill, minmax(350px, 1fr))',
+              gap: isMobile ? '24px' : '32px'
+            }}>
+              {/* Zayda Solomon Exhibition Card */}
+              <div
+                onClick={() => {
+                  setSelectedExhibition('zayda');
+                  setActivePage('exhibit');
+                }}
+                style={{
+                  background: '#FFFFFF',
+                  borderRadius: '12px',
+                  border: '1px solid #E2E8F0',
+                  overflow: 'hidden',
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  boxShadow: '0 2px 8px rgba(10, 31, 68, 0.08)'
+                }}
+                onMouseOver={(e) => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                  e.currentTarget.style.boxShadow = '0 12px 30px rgba(10, 31, 68, 0.15)';
+                  e.currentTarget.style.borderColor = '#0A1F44';
+                }}
+                onMouseOut={(e) => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.boxShadow = '0 2px 8px rgba(10, 31, 68, 0.08)';
+                  e.currentTarget.style.borderColor = '#E2E8F0';
+                }}
+              >
+                {/* Exhibition Preview Image */}
+                <div style={{
+                  width: '100%',
+                  height: isMobile ? '200px' : '250px',
+                  overflow: 'hidden',
+                  position: 'relative'
+                }}>
+                  <img
+                    src={`${import.meta.env.BASE_URL}historical/Zayda.png`}
+                    alt="Zayda Solomon Exhibition"
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'cover',
+                      display: 'block'
+                    }}
+                  />
+                </div>
+
+                {/* Exhibition Info */}
+                <div style={{
+                  padding: isMobile ? '20px' : '24px'
+                }}>
+                  <h3 style={{
+                    margin: '0 0 12px 0',
+                    fontSize: isMobile ? '20px' : '24px',
+                    fontWeight: '700',
+                    fontFamily: "'Playfair Display', serif",
+                    color: '#0A1F44',
+                    lineHeight: '1.3'
+                  }}>
+                    Zayda Solomon's Art
+                  </h3>
+
+                  <p style={{
+                    margin: '0 0 16px 0',
+                    fontSize: isMobile ? '14px' : '16px',
+                    lineHeight: '1.7',
+                    color: '#4a5568',
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}>
+                    Journey through the artwork of Solomon S Richmond (1906-2006), who explored Jewish identity, diaspora, and cultural heritage through painting. From Ukraine to America, his story embodies the resilience of the Jewish diaspora.
+                  </p>
+
+                  <div style={{
+                    display: 'flex',
+                    gap: '12px',
+                    flexWrap: 'wrap',
+                    marginBottom: '16px'
+                  }}>
+                    <span style={{
+                      padding: '6px 12px',
+                      background: '#F7FAFC',
+                      color: '#0A1F44',
+                      borderRadius: '6px',
+                      fontSize: isMobile ? '11px' : '12px',
+                      fontWeight: '600',
+                      fontFamily: "'Montserrat', sans-serif"
+                    }}>
+                      16+ Artworks
+                    </span>
+                    <span style={{
+                      padding: '6px 12px',
+                      background: '#F7FAFC',
+                      color: '#0A1F44',
+                      borderRadius: '6px',
+                      fontSize: isMobile ? '11px' : '12px',
+                      fontWeight: '600',
+                      fontFamily: "'Montserrat', sans-serif"
+                    }}>
+                      1929-2006
+                    </span>
+                  </div>
+
+                  <div style={{
+                    padding: '12px 0 0 0',
+                    borderTop: '1px solid #E2E8F0',
+                    fontSize: isMobile ? '13px' : '14px',
+                    fontWeight: '600',
+                    color: '#0A1F44',
+                    fontFamily: "'Montserrat', sans-serif",
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '8px'
+                  }}>
+                    View Exhibition →
+                  </div>
+                </div>
+              </div>
+
+              {/* Placeholder for future exhibitions */}
+              <div
+                style={{
+                  background: '#F7FAFC',
+                  borderRadius: '12px',
+                  border: '2px dashed #CBD5E0',
+                  overflow: 'hidden',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  minHeight: isMobile ? '300px' : '400px',
+                  padding: '32px'
+                }}
+              >
+                <div style={{ textAlign: 'center' }}>
+                  <div style={{
+                    fontSize: isMobile ? '36px' : '48px',
+                    marginBottom: '16px'
+                  }}>
+                    +
+                  </div>
+                  <p style={{
+                    margin: '0',
+                    fontSize: isMobile ? '14px' : '16px',
+                    color: '#718096',
+                    fontFamily: "'Montserrat', sans-serif"
+                  }}>
+                    More exhibitions coming soon
+                  </p>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       )}
